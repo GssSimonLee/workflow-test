@@ -8,5 +8,22 @@
   <body>
     <h1>Hello From GSS</h1>
     <a href="/info" target="_blank" rel="opener">go to another page</a>
+    <button>click me</button>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+  console.log("DOM fully loaded and parsed");
+        var btn = document.getElementsByTag('button');
+        btn[0].addEventListener('click', (event) => {
+         event.preventDefault(); 
+              var aTag = document.createElement('a');
+        aTag.href = '/info';
+        aTag.target = '_blank';
+        aTag.rel = 'opener';
+        document.body.appendChild(aTag);
+        aTag.click();
+        $(aTag).remove();
+});
+      });
+    </script>
   </body>
 </html>
