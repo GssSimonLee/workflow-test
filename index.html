@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello From GSS</title>
-  </head>
-  <body>
-    <h1>Hello From GSS</h1>
-    <a href="/info" target="_blank" rel="opener">go to another page</a>
-    <button>click me</button>
-    <script>
-      document.addEventListener("DOMContentLoaded", (event) => {
-  console.log("DOM fully loaded and parsed");
-        var btn = document.getElementsByTagName('button');
-        btn[0].addEventListener('click', (event) => {
-         event.preventDefault(); 
-          var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4) {
-                    var aTag = document.createElement('a');
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hello From GSS</title>
+</head>
+
+<body>
+  <h1>Hello From GSS</h1>
+  <a href="/info" target="_blank" rel="opener">go to another page</a>
+  <button>click me</button>
+  <button>click me2</button>
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      console.log("DOM fully loaded and parsed");
+      var btn = document.getElementsByTagName('button');
+      btn[0].addEventListener('click', (event) => {
+        event.preventDefault();
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            var aTag = document.createElement('a');
+            aTag.href = '/info';
+            aTag.target = '_blank';
+            aTag.rel = 'opener';
+            document.body.appendChild(aTag);
+            aTag.click();
+          }
+        };
+        xhttp.open("GET", "/info", true);
+        xhttp.send();
+
+      });
+      btn[1].addEventListener('click', (event) => {
+        event.preventDefault();
+        var aTag = document.createElement('a');
         aTag.href = '/info';
         aTag.target = '_blank';
         aTag.rel = 'opener';
         document.body.appendChild(aTag);
         aTag.click();
-        $(aTag).remove();
-    }
-};
-xhttp.open("GET", "/info", true);
-xhttp.send();
-
-});
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>
