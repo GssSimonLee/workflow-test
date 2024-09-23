@@ -10,8 +10,10 @@
 <body>
   <h1>Hello From GSS</h1>
   <a href="/info" target="_blank" rel="opener">go to another page</a>
-  <button>click me</button>
-  <button>click me2</button>
+  <button>open after ajax</button>
+  <button>open</button>
+  <button>remove hyperlink</button>
+  <button>open after ajax exist hyperlink</button>
   <script>
     document.addEventListener("DOMContentLoaded", (event) => {
       console.log("DOM fully loaded and parsed");
@@ -41,6 +43,16 @@
         aTag.rel = 'opener';
         document.body.appendChild(aTag);
         aTag.click();
+      });
+      btn[2].addEventListener('click', (event) => {
+        event.preventDefault();
+        var aTags = document.getElementsByTagName('a');
+        aTags.forEach(element => element.remove());
+      });
+      btn[3].addEventListener('click', (event) => {
+        event.preventDefault();
+        var aTags = document.getElementsByTagName('a');
+        aTags[0].click();
       });
     });
   </script>
